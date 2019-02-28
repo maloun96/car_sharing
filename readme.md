@@ -1,5 +1,5 @@
 ### Car Sharing APP
-### [Laravel Boilerplate link for documentation](https://github.com/pandao/editor.md "Laravel Boilerplate link for documentation")
+### [Laravel Boilerplate link for documentation](http://laravel-boilerplate.com/ "Laravel Boilerplate link for documentation")
 
 ### Install Instruction
 ### 1) Composer
