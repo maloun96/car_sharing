@@ -72,4 +72,5 @@
         </div><!--row-->
     </div><!--card-body-->
 </div><!--card-->
+<example-component></example-component>
 @endsection

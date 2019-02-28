@@ -26,7 +26,7 @@
 <body class="{{ config('backend.body_classes') }}">
     @include('backend.includes.header')
 
-    <div class="app-body">
+    <div class="app-body" id="app">
         @include('backend.includes.sidebar')
 
         <main class="main">
