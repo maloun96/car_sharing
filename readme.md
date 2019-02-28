@@ -1,50 +1,48 @@
-## Laravel 5.7 Boilerplate
+### Car Sharing APP
+### [Laravel Boilerplate link for documentation](https://github.com/pandao/editor.md "Laravel Boilerplate link for documentation")
 
-[![Latest Stable Version](https://poser.pugx.org/rappasoft/laravel-5-boilerplate/v/stable)](https://packagist.org/packages/rappasoft/laravel-5-boilerplate)
-[![Latest Unstable Version](https://poser.pugx.org/rappasoft/laravel-5-boilerplate/v/unstable)](https://packagist.org/packages/rappasoft/laravel-5-boilerplate) 
-[![StyleCI](https://styleci.io/repos/30171828/shield?style=plastic)](https://styleci.io/repos/30171828/shield?style=plastic)
-[![CircleCI](https://circleci.com/gh/rappasoft/laravel-5-boilerplate/tree/master.svg?style=svg)](https://circleci.com/gh/rappasoft/laravel-5-boilerplate/tree/master)
+### Install Instruction
+### 1) Composer
+Laravel project dependencies are managed through the PHP Composer tool. The first step is to install the depencencies by navigating into your project in terminal and typing this command:
 
-### Official Documentation
+`$ composer install`
 
-[Click here for the official documentation](http://laravel-boilerplate.com)
+### 2) NPM/Yarn
+In order to install the Javascript packages for frontend development, you will need the Node Package Manager, and optionally the Yarn Package Manager by Facebook (Recommended)
 
-### Slack Channel
+If you only have NPM installed you have to run this command from the root of the project:
 
-Please join us in our Slack channel to get faster responses to your questions. Get your invite here: https://laravel-5-boilerplate.herokuapp.com
+`$ npm install`
 
-### Laravel 5.6
+### 3) Create Database
+You must create your database on your server and on your .env file update the following lines:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=homestead
+DB_USERNAME=homestead
+DB_PASSWORD=secret
+```
+### 4) Artisan Commands
+The first thing we are going to so is set the key that Laravel will use when doing encryption. Run code below one by one.
 
-You can download the last build of Laravel 5.6 [here](https://github.com/rappasoft/laravel-5-boilerplate/tree/Legacy_5.6).
+`$ php artisan key:generate`
 
-### Laravel 5.5
+`$ php artisan migrate`
 
-You can download the last build of Laravel 5.5 [here](https://github.com/rappasoft/laravel-5-boilerplate/tree/Legacy_5.5).
+`$ php artisan db:seed`
 
-### Introduction
 
-Laravel Boilerplate provides you with a massive head start on any size web application. It comes with a full featured access control system out of the box with an easy to learn API and is built on a Bootstrap foundation with a front and backend architecture. We have put a lot of work into it and we hope it serves you well and saves you time!
+### 5) Storage link
+After your project is installed you must run this command to link your public storage folder for user avatar uploads:
 
-### Wiki
+`$ php artisan storage:link`
 
-Please view the [wiki](https://github.com/rappasoft/laravel-5-boilerplate/wiki) for a list of [features](https://github.com/rappasoft/laravel-5-boilerplate/wiki#features).
+### 5) Login
+After your project is installed and you can access it in a browser, click the login button on the right of the navigation bar.
+The administrator credentials are:
 
-### Issues
+**Username**: admin@admin.com
 
-If you come across any issues please [report them here](https://github.com/rappasoft/Laravel-5-Boilerplate/issues).
-
-### Contributing
-
-Thank you for considering contributing to the Laravel Boilerplate project! Please feel free to make any pull requests, or e-mail me a feature request you would like to see in the future to Anthony Rappa at rappa819@gmail.com.
-
-### Security Vulnerabilities
-
-If you discover a security vulnerability within this boilerplate, please send an e-mail to Anthony Rappa at rappa819@gmail.com, or create a pull request if possible. All security vulnerabilities will be promptly addressed. Please reference [this page](https://github.com/rappasoft/laravel-5-boilerplate/wiki/7.-Security-Fixes) to make sure you are up to date.
-
-### Donations
-
-If you would like to help the continued efforts of this project, any size [donations](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=JJWUZ4E9S9SFG&lc=US&item_name=Laravel%205%20Boilerplate&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted) are welcomed and highly appreciated.
-
-### License
-
-MIT: [http://anthony.mit-license.org](http://anthony.mit-license.org)
+**Password**: secret
