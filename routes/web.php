@@ -7,6 +7,12 @@ use App\Http\Controllers\LanguageController;
  * Routes that are used between both frontend and backend.
  */
 
+Route::get('/', function(){
+  return view('welcome');
+});
+
+Route::resource('parkings','ParkingController');
+
 // Switch between the included languages
 Route::get('lang/{lang}', [LanguageController::class, 'swap']);
 
