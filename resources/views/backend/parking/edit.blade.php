@@ -48,6 +48,17 @@
                     </div><!--form-group-->
 
                     <div class="form-group row">
+                        {{ html()->label('Fast charging')->class('col-md-2 form-control-label')->for('fast_charging') }}
+
+                        <div class="col-md-10">
+                            <label class="switch switch-label switch-lg switch-pill switch-primary">
+                                {{ html()->checkbox('fast_charging', true, '1')->class('switch-input') }}
+                                <span class="switch-slider" data-checked="Yes" data-unchecked="No"></span>
+                            </label>
+                        </div><!--col-->
+                    </div><!--form-group-->
+
+                    <div class="form-group row">
                         {{ html()->label('Capacity')->class('col-md-2 form-control-label')->for('capacity') }}
 
                         <div class="col-md-10">

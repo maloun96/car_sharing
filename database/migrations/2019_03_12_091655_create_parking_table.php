@@ -17,6 +17,7 @@ class CreateParkingTable extends Migration
 			$table->increments('id');
 			$table->string('name');
 			$table->tinyInteger('status');
+			$table->tinyInteger('fast_charging');
 			$table->integer('capacity');
 			$table->integer('price');
 			$table->string('latitude');

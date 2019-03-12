@@ -29,6 +29,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Status</th>
+                            <th>Fast charging</th>
                             <th>Capacity</th>
                             <th>Price</th>
                             <th>Latitude</th>
@@ -46,6 +47,14 @@
                                     @else
                                         <span class="badge badge-pill badge-danger">Closed</span>
                                     @endif
+                                </td>
+                                <td>
+                                    @if($parking->fast_charging)
+                                        <span class="badge badge-pill badge-success">Yes</span>
+                                    @else
+                                        <span class="badge badge-pill badge-danger">No</span>
+                                    @endif
+                                </td>
                                 <td>{{ $parking->capacity }}</td>
                                 <td>{{ $parking->price }}</td>
                                 <td>{{ $parking->latitude }}</td>

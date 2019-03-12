@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\Auth\User\StoreUserRequest;
 use App\Http\Requests\Backend\Parking\ManageParkingRequest;
 use App\Http\Requests\Backend\Parking\StoreParkingRequest;
 use App\Http\Requests\Backend\Parking\UpdateParkingRequest;
@@ -66,6 +65,7 @@ class ParkingController extends Controller
 		$this->parkingRepository->create($request->only(
 			'name',
 			'status',
+			'fast_charging',
 			'capacity',
 			'price',
 			'latitude',
@@ -100,6 +100,7 @@ class ParkingController extends Controller
 		$this->parkingRepository->update($parking, $request->only(
 			'name',
 			'status',
+			'fast_charging',
 			'capacity',
 			'price',
 			'latitude',

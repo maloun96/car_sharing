@@ -60,6 +60,7 @@ class ParkingRepository extends BaseRepository
 			$parking = parent::create([
 				'name' => $data['name'],
 				'status' => isset($data['status']) ? true : false,
+				'fast_charging' => isset($data['status']) ? true : false,
 				'capacity' => $data['capacity'],
 				'price' => $data['price'],
 				'latitude' => $data['latitude'],
@@ -84,6 +85,7 @@ class ParkingRepository extends BaseRepository
 			if ($parking->update([
 				'name' => $data['name'],
 				'status' => isset($data['status']) ? true : false,
+				'fast_charging' => isset($data['status']) ? true : false,
 				'capacity' => $data['capacity'],
 				'price' => $data['price'],
 				'latitude' => $data['latitude'],
