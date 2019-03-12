@@ -44,7 +44,7 @@
                                     @if($parking->status)
                                         <span class="badge badge-pill badge-success">Open</span>
                                     @else
-                                        <span class="badge badge-pill badge-error">Closed</span>
+                                        <span class="badge badge-pill badge-danger">Closed</span>
                                     @endif
                                 <td>{{ $parking->capacity }}</td>
                                 <td>{{ $parking->price }}</td>

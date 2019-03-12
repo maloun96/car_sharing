@@ -83,7 +83,7 @@ class ParkingRepository extends BaseRepository
 		return DB::transaction(function () use ($parking, $data) {
 			if ($parking->update([
 				'name' => $data['name'],
-				'status' => $data['status'],
+				'status' => isset($data['status']) ? true : false,
 				'capacity' => $data['capacity'],
 				'price' => $data['price'],
 				'latitude' => $data['latitude'],
