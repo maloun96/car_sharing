@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->string('car_number');
             $table->string('data');
             $table->string('time');
+            $table->string('recurrence')->nullable();
             $table->integer('parking_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('parking_id')->references('id')->on('parking');

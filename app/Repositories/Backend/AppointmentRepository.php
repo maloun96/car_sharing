@@ -49,6 +49,7 @@ class AppointmentRepository extends BaseRepository
             $parking = parent::create([
                 'car_number' => $data['car_number'],
                 'data' => $data['data'],
+                'recurrence' => $data['recurrence'],
                 'time' => $data['time'],
                 'parking_id' => $data['parking_id'],
                 'user_id' => $data['user_id'],

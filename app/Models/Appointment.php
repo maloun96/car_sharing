@@ -20,6 +20,7 @@ class Appointment extends Authenticatable
         'data',
         'time',
         'parking_id',
+        'recurrence',
         'parking_id',
         'user_id',
     ];
