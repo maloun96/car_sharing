@@ -16,6 +16,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/appointment')) }}" href="{{ route('admin.appointment.index') }}">
+                    <i class="nav-icon test"></i> Appointments
+                </a>
+            </li>
+
             <li class="nav-title">
                 @lang('menus.backend.sidebar.system')
             </li>

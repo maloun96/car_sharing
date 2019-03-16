@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\Parking;
+namespace App\Http\Requests\Backend\Appointment;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 /**
  * Class StoreAppointmentRequest.
  */
-class StoreParkingRequest extends FormRequest
+class StoreAppointmentRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.

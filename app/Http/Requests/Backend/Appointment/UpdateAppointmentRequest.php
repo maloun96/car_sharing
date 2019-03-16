@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Backend\Parking;
+namespace App\Http\Requests\Backend\Appointment;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * Class StoreAppointmentRequest.
+ * Class UpdateAppointmentRequest.
  */
-class StoreParkingRequest extends FormRequest
+class UpdateAppointmentRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class StoreParkingRequest extends FormRequest
 	public function rules()
 	{
 		return [
-			'name'     => ['required', 'max:191', Rule::unique('parking')],
 			'status'     => ['boolean'],
 			'capacity'     => ['required', 'max:191', 'integer'],
 			'price'     => ['required', 'max:191', 'integer'],

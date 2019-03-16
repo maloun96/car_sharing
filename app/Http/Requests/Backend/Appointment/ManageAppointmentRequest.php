@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Backend\Parking;
+namespace App\Http\Requests\Backend\Appointment;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class ManageAppointmentRequest.
  */
-class ManageParkingRequest extends FormRequest
+class ManageAppointmentRequest extends FormRequest
 {
 	/**
 	 * Determine if the user is authorized to make this request.
