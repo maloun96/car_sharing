@@ -10,6 +10,12 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link {{ active_class(Active::checkUriPattern('admin/parking')) }}" href="{{ route('admin.parking.index') }}">
+                    <i class="nav-icon test"></i> Parking
+                </a>
+            </li>
+
             <li class="nav-title">
                 @lang('menus.backend.sidebar.system')
             </li>
