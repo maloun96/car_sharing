@@ -30,6 +30,7 @@
                                 {{ html()->text('name')
                                     ->class('form-control')
                                     ->placeholder('Name')
+                                    ->id('name')
                                     ->attribute('maxlength', 191)
                                     ->required()
                                     ->autofocus() }}
@@ -83,7 +84,9 @@
                                     ->autofocus() }}
                             </div><!--col-->
                         </div><!--form-group-->
-
+                        <br />
+                        <div id="mapid" style="height: 400px;"></div>
+                        <br />
                         <div class="form-group row">
                             {{ html()->label('Latitude')->class('col-md-2 form-control-label')->for('latitude') }}
 
@@ -91,6 +94,7 @@
                                 {{ html()->text('latitude')
                                     ->class('form-control')
                                     ->placeholder('Latitude')
+                                    ->id('latitude')
                                     ->attribute('maxlength', 191)
                                     ->required()
                                     ->autofocus() }}
@@ -103,6 +107,7 @@
                             <div class="col-md-10">
                                 {{ html()->text('longitude')
                                     ->class('form-control')
+                                    ->id('longitude')
                                     ->placeholder('Longitude')
                                     ->attribute('maxlength', 191)
                                     ->required()
@@ -127,3 +132,34 @@
         </div><!--card-->
     {{ html()->form()->close() }}
 @endsection
+
+@push('after-scripts')
+    <script>
+        var map = L.map('mapid',{
+            zoom: 12,
+            minZoom: 12,
+            center: L.latLng(46.77, 23.62)
+        });
+        //.setView([46.77, 23.62], 13);;
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var marker;
+
+        map.on('click', (e) => {
+            const {lat, lng} = e.latlng;
+
+            if(marker) {
+                map.removeLayer(marker);
+            }
+
+            marker = L.marker([lat, lng]).addTo(map)
+            .bindPopup($('#name').val())
+            .openPopup();
+
+            $('#longitude').val(lng);
+            $('#latitude').val(lat);
+        });
+    </script>
+@endpush
