@@ -162,7 +162,7 @@ class AppointmentController extends Controller
 
     private function checkRecurrence($appointment, $data)
     {
-        $hours = $appointment->parking->fast_charging ? 2 : 1;
+        $hours = $appointment->parking->fast_charging ? 1 : 2;
 
         $appointmentTimeStart = strtotime($appointment->time);
         $appointmentTimeEnd = strtotime($appointment->time . ' + ' . $hours.' hours');
@@ -170,8 +170,7 @@ class AppointmentController extends Controller
         $dataTimeEnd = strtotime($data['time'] . ' + ' . $hours.' hours');
 
 
-
-        if($appointment->recurrence !== '') {
+        if(!empty($appointment->recurrence)) {
 
             $date1 = new DateTime($appointment->data);
             $date2 = new DateTime($data['data']);
