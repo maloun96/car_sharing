@@ -84,6 +84,9 @@
                         </div><!--col-->
                     </div><!--form-group-->
 
+                    <br />
+                    <div id="mapid" style="height: 400px;"></div>
+                    <br />
                     <div class="form-group row">
                         {{ html()->label('Latitude')->class('col-md-2 form-control-label')->for('latitude') }}
 
@@ -127,3 +130,37 @@
     </div><!--card-->
     {{ html()->form()->close() }}
 @endsection
+
+@push('after-scripts')
+    <script>
+        var map = L.map('mapid',{
+            zoom: 12,
+            minZoom: 12,
+            center: L.latLng(46.77, 23.62)
+        });
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var parking = JSON.parse('{!!$parking!!}');
+
+        var marker = L.marker([parking.latitude, parking.longitude]).addTo(map)
+            .bindPopup(parking.name)
+            .openPopup();;
+
+        map.on('click', (e) => {
+            const {lat, lng} = e.latlng;
+
+            if(marker) {
+                map.removeLayer(marker);
+            }
+
+            marker = L.marker([lat, lng]).addTo(map)
+                .bindPopup($('#name').val())
+                .openPopup();
+
+            $('#longitude').val(lng);
+            $('#latitude').val(lat);
+        });
+    </script>
+@endpush

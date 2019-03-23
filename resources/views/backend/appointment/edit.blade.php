@@ -35,12 +35,14 @@
                                 ->autofocus() }}
                         </div><!--col-->
                     </div><!--form-group-->
-
+                    <br />
+                    <div id="mapid" style="height: 400px;"></div>
+                    <br />
                     <div class="form-group row">
                         {{ html()->label('Parking')->class('col-md-2 form-control-label')->for('parking_id') }}
 
                         <div class="col-md-10">
-                            <select class='form-control' name="parking_id">
+                            <select class='form-control' id="parking-select" name="parking_id">
                                 @foreach($parkings as $parking)
                                     <option {{$parking->id === $appointment->parking->id ? 'selected="true"' : ''}} value="{{ $parking->id }}">{{$parking->name}} {{$parking->fast_charging ? '(Fast charging)' : ''}} </option>
                                 @endforeach
@@ -119,6 +121,31 @@
             noCalendar: true,
             dateFormat: "H:i",
         });
+
+        var parkings = JSON.parse('{!!$parkings!!}');
+
+        var map = L.map('mapid',{
+            zoom: 12,
+            minZoom: 12,
+            center: L.latLng(46.77, 23.62)
+        });
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        parkings.map((park) => {
+            L.marker([park.latitude, park.longitude]).addTo(map).on('click', (e) => {
+                const f = parkings.find((p) => p.latitude == e.latlng.lat && p.longitude == e.latlng.lng);
+
+                if(f) {
+                    $('#parking-select').val(f.id);
+                }
+            })
+                .bindPopup(park.name)
+                .openPopup();
+        })
+
     </script>
 @endpush
 
