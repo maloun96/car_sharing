@@ -58,4 +58,27 @@ class AppointmentRepository extends BaseRepository
             return $parking;
         });
     }
+
+    /**
+     * @param Appointment $appointment
+     * @param array $data
+     * @return Appointment
+     * @internal param Parking $parking
+     */
+    public function update(Appointment $appointment, array $data) : Appointment
+    {
+        return DB::transaction(function () use ($appointment, $data) {
+            if ($appointment->update([
+                'car_number' => $data['car_number'],
+                'data' => $data['data'],
+                'recurrence' => $data['recurrence'],
+                'time' => $data['time'],
+                'parking_id' => $data['parking_id'],
+                'user_id' => $data['user_id'],
+            ])) {
+
+                return $appointment;
+            }
+        });
+    }
 }

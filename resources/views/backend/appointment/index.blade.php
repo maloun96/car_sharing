@@ -31,6 +31,7 @@
                             <th>Car number</th>
                             <th>Date</th>
                             <th>Time</th>
+                            <th>Recurrence</th>
                             <th>User</th>
                             <th>Actions</th>
                         </tr>
@@ -42,6 +43,7 @@
                                 <td>{{ $appointment->car_number }}</td>
                                 <td>{{ $appointment->data }}</td>
                                 <td>{{ $appointment->time }}</td>
+                                <td>{{ $appointment->recurrence }}</td>
                                 <td>{{ $appointment->user->full_name }}</td>
 
                                 <td>

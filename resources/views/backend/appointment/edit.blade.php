@@ -80,10 +80,10 @@
                         {{ html()->label('Frequency')->class('col-md-2 form-control-label')->for('frequency') }}
 
                         <div class="col-md-10">
-                            <select class='form-control' name="recurrence">
-                                <option value="">None</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
+                            <select class='form-control' name="recurrence" >
+                                <option {{$appointment->recurrence === '' ? 'selected="true"' : ''}} value="">None</option>
+                                <option {{$appointment->recurrence === 'weekly' ? 'selected="true"' : ''}} value="weekly">Weekly</option>
+                                <option {{$appointment->recurrence === 'monthly' ? 'selected="true"' : ''}} value="monthly">Monthly</option>
                             </select>
                         </div><!--col-->
                     </div><!--form-group-->

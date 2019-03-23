@@ -80,11 +80,11 @@ class AppointmentController extends Controller
             'user_id' => Auth::id()
         ];
 
-        $appointments = $this->appointmentRepository->all();
+        $appointments = $this->appointmentRepository->where('parking_id', $data['parking_id'], '=')->with('parking')->get();
 
         foreach($appointments as $appointment) {
 
-            if($this->sameTime($appointment, $data) || $this->checkRecurrence($appointment, $data)) {
+            if($this->checkRecurrence($appointment, $data)) {
                 return redirect()->route('admin.appointment.create')
                     ->withFlashDanger('There is another reservation in this date.');
             }
@@ -128,10 +128,14 @@ class AppointmentController extends Controller
             'user_id' => Auth::id()
         ];
 
-        $appointments = $this->appointmentRepository->where('id', $appointment->id, '!=')->get();
+        $appointments = $this->appointmentRepository
+            ->where('id', $appointment->id, '!=')
+            ->where('parking_id', $data['parking_id'], '=')
+            ->with('parking')
+            ->get();
 
         foreach($appointments as $a) {
-            if($this->sameTime($a, $data) || $this->checkRecurrence($a, $data)) {
+            if($this->checkRecurrence($a, $data)) {
                 return redirect()->route('admin.appointment.create')
                     ->withFlashDanger('There is another reservation in this date.');
             }
@@ -155,14 +159,19 @@ class AppointmentController extends Controller
         return redirect()->route('admin.appointment.index')->withFlashSuccess('Appointment was successfully deleted.');
     }
 
-    private function sameTime($appointment, $data)
-    {
-        return $appointment->data === $data['data'] && $appointment->time === $data['time'] && $appointment->parking->id == $data['parking_id'];
-    }
 
     private function checkRecurrence($appointment, $data)
     {
-        if($data['time'] === $appointment->time && $appointment->parking_id == $data['parking_id'] && $appointment->recurrence !== '') {
+        $hours = $appointment->parking->fast_charging ? 2 : 1;
+
+        $appointmentTimeStart = strtotime($appointment->time);
+        $appointmentTimeEnd = strtotime($appointment->time . ' + ' . $hours.' hours');
+        $dataTimeStart = strtotime($data['time']);
+        $dataTimeEnd = strtotime($data['time'] . ' + ' . $hours.' hours');
+
+
+
+        if($appointment->recurrence !== '') {
 
             $date1 = new DateTime($appointment->data);
             $date2 = new DateTime($data['data']);
@@ -176,7 +185,16 @@ class AppointmentController extends Controller
                 return true;
             }
 
+            // if is in range our date and overlap with another appointment time
+            if($appointmentTimeStart <= $dataTimeEnd && $appointmentTimeEnd >= $dataTimeStart) {
+                return true;
+            }
+
             echo $interval->y." ".$interval->m." ".$interval->d;
+        }
+
+        if($appointmentTimeStart <= $dataTimeEnd && $appointmentTimeEnd >= $dataTimeStart && $appointment->data === $data['data']) {
+            return true;
         }
         return false;
     }
