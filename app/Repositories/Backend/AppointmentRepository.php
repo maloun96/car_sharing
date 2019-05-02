@@ -30,10 +30,16 @@ class AppointmentRepository extends BaseRepository
      */
     public function getPaginated($paged = 25, $orderBy = 'created_at', $sort = 'desc') : LengthAwarePaginator
     {
-        return $this->model
+        $query = $this->model
             ->with('parking', 'user')
-            ->orderBy($orderBy, $sort)
-            ->paginate($paged);
+            ->orderBy($orderBy, $sort);
+
+
+        if(Auth()->user()->roles->first()->name !== 'administrator') {
+            $query->where('user_id', '=', Auth()->user()->id);
+        }
+
+        return $query->paginate($paged);
     }
 
     /**
