@@ -97,10 +97,9 @@ class UserRepository extends BaseRepository
                 'last_name'         => $data['last_name'],
                 'email'             => $data['email'],
                 'confirmation_code' => md5(uniqid(mt_rand(), true)),
+                'confirmed'         => 1,
                 'active'            => 1,
                 'password'          => $data['password'],
-                                    // If users require approval or needs to confirm email
-                'confirmed'         => config('access.users.requires_approval') || config('access.users.confirm_email') ? 0 : 1,
             ]);
 
             if ($user) {
@@ -108,18 +107,6 @@ class UserRepository extends BaseRepository
                  * Add the default site role to the new user
                  */
                 $user->assignRole(config('access.users.default_role'));
-            }
-
-            /*
-             * If users have to confirm their email and this is not a social account,
-             * and the account does not require admin approval
-             * send the confirmation email
-             *
-             * If this is a social account they are confirmed through the social provider by default
-             */
-            if (config('access.users.confirm_email')) {
-                // Pretty much only if account approval is off, confirm email is on, and this isn't a social account.
-                $user->notify(new UserNeedsConfirmation($user->confirmation_code));
             }
 
             /*

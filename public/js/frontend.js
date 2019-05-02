@@ -14738,9 +14738,9 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /usr/local/var/www/laravel-5-boilerplate/resources/js/frontend/app.js */"./resources/js/frontend/app.js");
-__webpack_require__(/*! /usr/local/var/www/laravel-5-boilerplate/resources/sass/frontend/app.scss */"./resources/sass/frontend/app.scss");
-module.exports = __webpack_require__(/*! /usr/local/var/www/laravel-5-boilerplate/resources/sass/backend/app.scss */"./resources/sass/backend/app.scss");
+__webpack_require__(/*! /usr/local/var/www/car_sharing/resources/js/frontend/app.js */"./resources/js/frontend/app.js");
+__webpack_require__(/*! /usr/local/var/www/car_sharing/resources/sass/frontend/app.scss */"./resources/sass/frontend/app.scss");
+module.exports = __webpack_require__(/*! /usr/local/var/www/car_sharing/resources/sass/backend/app.scss */"./resources/sass/backend/app.scss");
 
 
 /***/ })

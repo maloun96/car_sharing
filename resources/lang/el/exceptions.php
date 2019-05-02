@@ -59,7 +59,7 @@ return [
             'confirmation' => [
                 'already_confirmed' => 'Your account is already confirmed.',
                 'confirm'           => 'Confirm your account!',
-                'created_confirm'   => 'Your account was successfully created. We have sent you an e-mail to confirm your account.',
+                'created_confirm'   => 'Your account was successfully created.',
                 'created_pending'   => 'Your account was successfully created and is pending approval. An e-mail will be sent when your account is approved.',
                 'mismatch'          => 'Your confirmation code does not match.',
                 'not_found'         => 'That confirmation code does not exist.',

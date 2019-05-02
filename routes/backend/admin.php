@@ -26,9 +26,6 @@ Route::group(['prefix' => 'parking/{parking}'], function () {
 });
 
 
-
-
-
 /*
 * Appointment CRUD
 */
