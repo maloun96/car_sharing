@@ -61,7 +61,7 @@ class AppointmentController extends Controller
      */
     public function create(ManageAppointmentRequest $request, RoleRepository $roleRepository, PermissionRepository $permissionRepository)
     {
-        $data = $this->parkingRepository->all();
+        $data = $this->parkingRepository->where('status', 1)->get();
         return view('backend.appointment.create', ['parkings' => $data]);
     }
 
@@ -80,7 +80,10 @@ class AppointmentController extends Controller
             'user_id' => Auth::id()
         ];
 
-        $appointments = $this->appointmentRepository->where('parking_id', $data['parking_id'], '=')->with('parking')->get();
+        $appointments = $this->appointmentRepository
+            ->where('parking_id', $data['parking_id'], '=')
+            ->with('parking')
+            ->get();
 
         foreach($appointments as $appointment) {
 
