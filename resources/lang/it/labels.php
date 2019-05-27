@@ -128,7 +128,7 @@ return [
 
         'user' => [
             'passwords' => [
-                'change' => 'Change Password',
+                'change' => 'Schimba parola',
             ],
 
             'profile' => [
